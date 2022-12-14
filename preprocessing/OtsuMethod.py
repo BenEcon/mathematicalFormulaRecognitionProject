@@ -2,6 +2,10 @@ import cv2 as cv
 import os
 import shutil
 
+# path =  os.path.dirname(os.path.abspath(__file__))
+path_rows = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'results/rows'))
+path_temp = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'results/temp'))
+
 class OtsuMethod(object):
     """
     OtsuMethod used to convert image into binary image.
@@ -10,10 +14,10 @@ class OtsuMethod(object):
     def __init__(self):
         super(OtsuMethod, self).__init__()
         # remove help folders in case it exist from last ran.
-        if os.path.isdir("C:/rows"):
-            shutil.rmtree("C:/rows")
-        if os.path.isdir("C:/temp"):
-            shutil.rmtree("C:/temp")
+        if os.path.isdir(path_rows):
+            shutil.rmtree(path_rows)
+        if os.path.isdir(path_temp):
+            shutil.rmtree(path_temp)
 
 
     def ConvertToBinaryImage(self, imagePath):
@@ -60,7 +64,7 @@ class OtsuMethod(object):
         directory = None
         while i != len(uppers):
             # create help folder named "row" and write each row
-            file_path = "C:/rows/" + str(i) + '.png'
+            file_path = path_rows + "/" + str(i) + '.png'
             directory = os.path.dirname(file_path)
             try:
                 os.stat(directory)

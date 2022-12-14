@@ -4,6 +4,8 @@ import collections
 import os
 import shutil
 
+path_temp = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'results/temp/'))
+
 class BoundingBoxes(object):
    """
    BoundingBoxes used to segment binary image into boxes.
@@ -50,7 +52,7 @@ class BoundingBoxes(object):
             continue
          # Crop each box in the image and save it.
          letter = image[y:y + h, x:x + w]
-         file_path = "C:/temp/" + str(i) + '.png'
+         file_path = path_temp + str(i) + '.png'
          directory = os.path.dirname(file_path)
          try:
             os.stat(directory)

@@ -12,15 +12,15 @@ def hasNumbers(inputString):
 
 
 
-arglist = sys.argv
-files = os.listdir(arglist[1])
+arglist = os.path.dirname(sys.argv[0])+"/images"
+files = os.listdir(arglist)
 otsu = OtsuMethod()
 boundingBoxes = BoundingBoxes()
 symbolRecognition = SymbolRecognition()
 convertStringToLatexFormat = ConvertStringToLatexFormat()
 structureAnalysis = StructureAnalysis()
 for file in files:
-    imagePath = arglist[1] + "\\" + file
+    imagePath = arglist + "/" + file
     # get the path to rows directory
     binaryImageDirPath = otsu.ConvertToBinaryImage(imagePath)
     if not binaryImageDirPath:
@@ -29,7 +29,7 @@ for file in files:
     rows = os.listdir(binaryImageDirPath)
     resultString = ""
     for row in rows:
-        res = symbolRecognition.ocr(binaryImageDirPath + "//" + row)
+        res = symbolRecognition.ocr(binaryImageDirPath + "/" + row)
         if res == '' or res.__contains__("\n") or hasNumbers(res):
             boxes = boundingBoxes.SegmentImageToBoxes(binaryImageDirPath + "//" + row)
             resultString = resultString + "\n\\begin{align*}" +  structureAnalysis.StructureAnalysis(boxes)  + "\n\\end{align*}\n"

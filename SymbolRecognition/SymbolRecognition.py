@@ -26,7 +26,7 @@ class SymbolRecognition(object):
         # Define the command
         correlation = Correlation()
         latexFormat = ConvertStringToLatexFormat()
-        pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe"
+        # pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe"
         # Send the image to Tesseract to recognize it.
         symbol = pytesseract.image_to_string(im, lang='eng', boxes=False,
                                              config='--psm 10 --eom 1 -c tessedit_char_'
@@ -51,7 +51,7 @@ class SymbolRecognition(object):
         # Open the BoundingBox image
         im = Image.open(BoundingBoxPath)
         im.filter(ImageFilter.SHARPEN)
-        pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe"
+        # pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe"
         # Send the image to Tesseract to recognize it.
         symbol = pytesseract.image_to_string(im)
         return symbol
